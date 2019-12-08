@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[14]:
+# In[70]:
 
 
 import unittest
@@ -54,6 +54,24 @@ class TestReliever(unittest.TestCase):
     def test_team(self):
         self.assertEqual(self.p1.team,"Yankees")
         self.assertEqual(self.p2.team,"Braves")
+    def test_everything_else(self):
+        self.assertEqual(self.p1.role, "Player")
+        self.assertEqual(self.p1.inningspitched, 180)
+        self.assertEqual(self.p1.strikeouts, 180)
+        self.assertEqual(self.p1.walks, 90)
+        self.assertEqual(self.p1.earnedruns, 45)
+        self.assertEqual(self.p1.hits, 90)
+        self.assertEqual(self.p1.saves, 10)
+        self.assertEqual(self.p1.holds, 10)
+        self.assertEqual(self.p1.chances, 20)
+        self.assertEqual(self.p1.SVper(), 0.5)
+        self.assertEqual(self.p1.ERA(),2.25)
+        self.assertEqual(self.p1.WHIP(),1)
+        self.assertEqual(self.p1.Kp9(),9)
+        self.assertEqual(self.p1.BBp9(),4.5)
+        self.assertEqual(self.p1.HDper(), 0.5)
+        self.assertIsNone(self.p1.getSalary())
+        self.assertIsNone(self.p1.display())
     def tearDown(self):
         self.p1 = None
         self.p2 = None
