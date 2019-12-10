@@ -1,0 +1,11 @@
+language: python
+python:
+  - "3.4"
+  - "3.5"
+# command to run tests
+install:
+  pip install numpy
+
+script:
+  - python TestSuite.py
+  - python TestSuitePitching.py

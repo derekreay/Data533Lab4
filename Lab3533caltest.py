@@ -41,6 +41,14 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(cl.singles(10,5,0,0),5)
         self.assertEqual(cl.singles(10,0,0,0),10)
         
+    def testeverything_else(self):
+        self.assertEqual(cl.slugging(20,10,2,1,1),0.85)
+        self.assertEqual(cl.obps(16,10,2,1,1,4),1.7625)
+        self.assertEqual(cl.totalbase(10,2,1,1),17)
+        self.assertEqual(cl.onbase(18,8,2),0.5)
+        self.assertEqual(cl.krate(10,4),0.4)
+        self.assertEqual(cl.walkrate(8,2),0.2)
+        
     
 unittest.main(argv =[''], verbosity=2, exit=False)
 

@@ -6,9 +6,10 @@
 
 import baseball.batters.batters as b
 import unittest
+#import numpy as np
 
 
-# In[9]:
+# In[10]:
 
 
 class TestBatters(unittest.TestCase):
@@ -32,23 +33,32 @@ class TestBatters(unittest.TestCase):
         print("tearDownClass")
         
         
-    def testbatter(self):
+    def test_batter(self):
         self.assertEqual(self.b1.name, 'a')
         self.assertEqual(self.b1.team, 'Yankees')
         self.assertEqual(self.b1.hits,140)
         self.b1.name = "Jay"
         self.assertEqual(self.b1.name, 'Jay')
         self.assertEqual(self.b1.totalbase(), 264)
+        self.assertEqual(self.b1.getSalary(), None)
+        self.assertEqual(self.b1.display(), None)
         
-    def testbatter2(self):
+    def test_batter2(self):
         self.assertEqual(self.b2.name, 'J')
         self.assertEqual(self.b2.team, 'Houston')
         self.assertEqual(self.b2.hits,100)
         self.assertEqual(self.b2.batavg(), 0.25)
         self.assertEqual(self.b2.singles(), 64)
+        #np.random.seed(35)
+        self.assertEqual(self.b2.slugging(), 0.405)
+        self.assertEqual(self.b2.onbase(), 0.375)
+        self.assertEqual(self.b2.obps(), 0.78)
+        #self.assertEqual(self.b2.simplateappearances(1), [0])
+        self.assertEqual(self.b2.count([0,1,2,3,4]), [5,4,1,1,1])
         
-        
-unittest.main(argv =[''], verbosity=2, exit=False)
+
+
+unittest.main(argv=[''], verbosity=2, exit=False)
 
 
 # In[ ]:
