@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[38]:
 
 
 def batavg(atbats, hits):
@@ -13,10 +13,13 @@ def batavg(atbats, hits):
         return hits/atbats
     
 def singles(hits, doubles, triples, HR):
-    if doubles+triples+HR > hits:
-        print("Incorrect input cannot have more extra base hits than hits")
-    else:
-        return (hits-doubles-triples-HR)
+    try:
+        if doubles+triples+HR > hits:
+            raise BaseBallError
+        else:
+            return (hits-doubles-triples-HR)
+    except:
+        pass
     
 def onbase(atbats, hits, walks):
     if atbats+walks == 0:
@@ -34,24 +37,31 @@ def totalbase(hits, doubles, triples, HR):
        
     
 def krate(atbats, K):
-    if atbats == 0:
-        print("cannot calculate a rate with no atbats")
-    elif K > atbats:
-        print("Incorrect input cannot have more K than atbats")
+    try:
+        if atbats < 0 or K < 0:
+            raise negativeNum
+        else:
+            return K/atbats
+    except negativeNum:
+        pass
+    except ZeroDivisionError:
+        print("Cannot divide by zero")
+    except TypeError:
+        print("Must input number, cannot accepts letters")
     else:
-        return K/atbats
+        pass
 
 
 def slugging(atbats, hits, doubles, triples, hr):
     try:
-        if atbats == 0:
-            print("Cannot calculated slugging percentage with no atbats")
-        elif hits > atbats:
-            print("Cannot have more hits than atbats")
-        else:
-            return (totalbase(hits, doubles, triples, hr))/(atbats)
-    except:
+        return (totalbase(hits, doubles, triples, hr))/(atbats)
+    except ZeroDivisionError:
+        print("Cannot divide by zero")
+    except TypeError:
+        print("Must input number, cannot accepts letters")
+    else:
         pass
+    
  
 def obps(atbats, hits, doubles, triples, hr, walks):
     try:
@@ -64,4 +74,12 @@ def walkrate(atbats, walks):
         print("Cannot calculate walkrate with no plate appearances or walks")
     else:
         return walks/(walks+atbats)
+
+class BaseBallError(Exception):
+    def __init__(self):
+        print("Incorrect input cannot have more extra base hits than hits")
+          
+class negativeNum(Exception):
+    def __init__(self):
+        print("Incorrect input cannot have negative values")
 

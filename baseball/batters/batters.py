@@ -111,44 +111,6 @@ class batter(personnel):
         personnel.display(self)
         print("At bats:", self.atbats, "Hits:", self.hits, "Doubles:", self.doubles, "Triples:", self.triples, "Home Runs:", self.hr, "Walks:", self.walks)
     
-    def simplateappearances(self, plateappearances):
-        """ Simulates n plate appearance outcomes given a player object
-
-        Args:
-        plateappearances: number of plate appearances to simulate
-
-        Returns:
-        Vector of batter plate appearance outcomes.
-
-        """
-        #simulates plate appearances based on RNG from numpy
-        import numpy as np
-        outcome = []
-        j=np.random.rand(10)
-
-        for i in range(0,len(j)):
-            if j[i] < self.batavg():
-                #if number generated between 0 and 1 less than batting average returns 1 for hit
-                outcome.append(1)
-            else:
-                #if number greater than average returns 0 for out
-                outcome.append(0)
-        
-        for i in range(0, len(outcome)):
-            if outcome[i] == 1:
-                #disributes hits as 1 single 2 double 3 triple or 4 homerun based on proportion of hits batter has
-                test = np.random.rand(1)
-                if test < self.singles()/self.hits:
-                    outcome[i] = 1
-                elif test < (self.singles()+self.doubles)/self.hits:
-                    outcome[i] = 2
-                elif test < (self.singles()+self.doubles+self.triples)/self.hits:
-                    outcome[i] = 3
-                else:
-                    outcome[i] = 4
-        
-        return outcome
-    
     def count(self, x):
         """ Helps user understand simulated plate appearance outcomes
 

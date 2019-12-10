@@ -6,7 +6,6 @@
 
 import baseball.batters.batters as b
 import unittest
-#import numpy as np
 
 
 # In[10]:
@@ -49,11 +48,9 @@ class TestBatters(unittest.TestCase):
         self.assertEqual(self.b2.hits,100)
         self.assertEqual(self.b2.batavg(), 0.25)
         self.assertEqual(self.b2.singles(), 64)
-        #np.random.seed(35)
         self.assertEqual(self.b2.slugging(), 0.405)
         self.assertEqual(self.b2.onbase(), 0.375)
         self.assertEqual(self.b2.obps(), 0.78)
-        #self.assertEqual(self.b2.simplateappearances(1), [0])
         self.assertEqual(self.b2.count([0,1,2,3,4]), [5,4,1,1,1])
         
 
