@@ -4,7 +4,7 @@
 # In[ ]:
 
 
-class personnel
+class personnel:
     """creates baseball personnel object
     
     
