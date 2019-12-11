@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[5]:
 
 
 class personnel:
@@ -32,7 +32,7 @@ class personnel:
         print("Salary:", self.__salary)
 
 
-# In[ ]:
+# In[17]:
 
 
 class starter(personnel):
@@ -68,10 +68,11 @@ class starter(personnel):
         "BB:", self.walks, "ER:", self.earnedruns, "Hits:", self.hits, "GS:", self.gamesstarted)
         
     def IPpG(self):
-        if self.gamesstarted <= 0:
+        try: return self.inningspitched/self.gamesstarted 
+        except ZeroDivisionError:
             print("Needs gamesstarted > 0 to calculate")
-        else:
-            return self.inningspitched/self.gamesstarted
+        except Exception:
+            print("something else messed up")
         
     def ERA(self):
         """creates baseball personnel object
@@ -88,10 +89,11 @@ class starter(personnel):
             return self.earnedruns*9/self.inningspitched            
     
     def WHIP(self):
-        if self.inningspitched <= 0:
+        try: return (self.walks+self.hits)/self.inningspitched
+        except ZeroDivisionError:
             print("Needs inningspitched > 0 to calculate")
-        else:
-            return (self.walks+self.hits)/self.inningspitched
+        except Exception:
+            print("something else messed up")
     
     def Kp9(self):
         if self.inningspitched <= 0:

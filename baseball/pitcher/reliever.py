@@ -1,7 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[6]:
+
+
+class SavesError(Exception): 
+    def __init__(self):
+        print("saves can't be greater than chances you numpty")
+        
+class HoldsError(Exception): 
+    def __init__(self):
+        print("holds can't be greater than chances bruh")
+        
+
+
+# In[5]:
 
 
 class personnel:
@@ -32,7 +45,7 @@ class personnel:
         print("Salary:", self.__salary)
 
 
-# In[ ]:
+# In[22]:
 
 
 class reliever(personnel):
@@ -75,16 +88,22 @@ class reliever(personnel):
                "SV:", self.saves, "HD:", self.holds, "CH:", self.chances)
         
     def SVper(self):
-        if self.chances <= 0:
-            print("Needs chances > 0 to calculate")
-        else:
-            return self.saves/self.chances
+        try: 
+            if self.saves - self.chances >0:
+                raise SavesError
+            else:
+                return self.saves/self.chances
+        except:
+            pass
     
     def HDper(self):
-        if self.chances <= 0:
-            print("Needs chances > 0 to calculate")
-        else:
-            return self.saves/self.chances
+        try: 
+            if self.holds - self.chances >0:
+                raise HoldsError
+            else:
+                return self.saves/self.chances
+        except:
+            pass
         
     def ERA(self):
         """creates baseball personnel object
@@ -117,10 +136,4 @@ class reliever(personnel):
             print("Needs inningspitched > 0 to calculate")
         else:
             return self.walks/self.inningspitched*9
-
-
-# In[ ]:
-
-
-
 
